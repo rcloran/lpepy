@@ -1,0 +1,20 @@
+[project]
+name = "lpepy"
+version = "0.0"
+description = "LED Pose Estimation -- find where LEDs are in space"
+readme = "README.md"
+license = {text = "MIT"}
+dependencies = ["numpy", "opencv-python"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+repository = "https://github.com/rcloran/lpepy"
+
+[tool.setuptools]
+packages = ["lpepy"]
+
+[project.scripts]
+lpe-calibrate = "lpepy.calibrate:main"
