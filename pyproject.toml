@@ -18,3 +18,4 @@ packages = ["lpepy"]
 
 [project.scripts]
 lpe-calibrate = "lpepy.calibrate:main"
+lpe-capture = "lpepy.capture:main"
