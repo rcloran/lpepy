@@ -29,8 +29,8 @@ The short version:
 
 ```
 $ open data/calibration-chart.pdf
-$ lpe-calibrate --camera 1 --filename ~/lpe-calibration.yml
-$ lpe-capture --camera 1 --calibration-file ~/lpe-calibration.yml --wled-address 192.168.1.10 coords.json
+$ lpe-calibrate --camera 1
+$ lpe-capture --camera 1 --wled-address 192.168.1.10 coords.json
 ```
 
 ### Camera convenience
@@ -60,16 +60,22 @@ work.
 
 ```
 $ lpe-calibrate --help
-usage: lpe-calibrate [-h] [--camera CAMERA] [--columns COLUMNS] [--rows ROWS] [--block-size BLOCK_SIZE] [--filename FILENAME]
+usage: lpe-calibrate [-h] [--camera CAMERA] [--columns COLUMNS] [--rows ROWS]
+                     [--block-size BLOCK_SIZE] [--calibration-file FILE]
 
 options:
   -h, --help            show this help message and exit
-  --camera CAMERA       The index of the camera to use (according to OpenCV)
-  --columns COLUMNS     Number of vertices in the grid in a rightwards direction (along the X axis)
+  --camera CAMERA       The index of the camera to use (according to OpenCV) (default: 0)
+  --columns COLUMNS     Number of vertices in the grid in a rightwards direction (along the X
+                        axis) (default: 9)
   --rows ROWS           Number of vertices in the grid in a downward direction (along the Y axis)
+                        (default: 6)
   --block-size BLOCK_SIZE
                         The size of each block (distance between vertices along an axis), in mm
-  --filename FILENAME
+                        (default: 20)
+  --calibration-file FILE
+                        Name of file to which calibration data will be written (default:
+                        ~/Library/Application Support/lpepy/calibration.yml)
 ```
 
 To use `lpe-capture`, first print out or display the calibration chart in
@@ -112,19 +118,26 @@ are.
 
 ```
 $ lpe-capture --help
-usage: lpe-capture [-h] [--camera CAMERA] --calibration-file FILE [--leds LEDS] [--wled-address WLED_ADDRESS] [--wled-port WLED_PORT] FILE
+usage: lpe-capture [-h] [--camera CAMERA] [--calibration-file FILE] [--leds LEDS]
+                   [--wled-address WLED_ADDRESS] [--wled-port WLED_PORT]
+                   FILE
 
 positional arguments:
   FILE                  JSON file to which resulting coordinates will be written
 
 options:
   -h, --help            show this help message and exit
-  --camera CAMERA       The index of the camera to use (according to OpenCV)
+  --camera CAMERA       The index of the camera to use (according to OpenCV) (default: 0)
   --calibration-file FILE
-                        Filename for camera calibration data (can be created with lpe-calibrate)
-  --leds LEDS           Number of LEDs in the LED string
+                        Name of file containing camera calibration data (created with lpe-
+                        calibrate) (default: ~/Library/Application
+                        Support/lpepy/calibration.yml)
+  --leds LEDS           Number of LEDs in the LED string (default: 100)
   --wled-address WLED_ADDRESS
+                        Address of host running WLED which will display LEDs (default:
+                        255.255.255.255)
   --wled-port WLED_PORT
+                        Port number that WLED is listening on (default: 21324)
 ```
 
 Currently, the only supported way to control an LED strip is with the [DRGB WLED

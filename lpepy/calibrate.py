@@ -140,6 +140,7 @@ def save_calibration(
 def main():
     parser = argparse.ArgumentParser(
         prog="lpe-calibrate",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
 
     parser.add_argument(
@@ -166,7 +167,12 @@ def main():
         type=int,
         help="The size of each block (distance between vertices along an axis), in mm",
     )
-    parser.add_argument("--filename", default="calibration.yml")
+    parser.add_argument(
+        "--calibration-file",
+        default=util.get_default_calibration_file(),
+        metavar="FILE",
+        help="Name of file to which calibration data will be written",
+    )
 
     args = parser.parse_args()
 
@@ -180,7 +186,14 @@ def main():
     )
 
     save_calibration(
-        args.filename, args.columns, args.rows, args.block_size, mtx, dist, rvecs, tvecs
+        args.calibration_file,
+        args.columns,
+        args.rows,
+        args.block_size,
+        mtx,
+        dist,
+        rvecs,
+        tvecs,
     )
 
 

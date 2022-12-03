@@ -4,7 +4,7 @@ version = "0.0"
 description = "LED Pose Estimation -- find where LEDs are in space"
 readme = "README.md"
 license = {text = "MIT"}
-dependencies = ["numpy", "opencv-python"]
+dependencies = ["appdirs", "numpy", "opencv-python"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",

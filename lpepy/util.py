@@ -1,5 +1,8 @@
+import os
+
 import cv2 as cv
 import numpy as np
+from appdirs import user_data_dir
 
 
 class Camera:
@@ -78,3 +81,11 @@ def add_text(img, text, line):
         y = 30 * line
     cv.putText(img, text, (11, y + 1), cv.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0))
     cv.putText(img, text, (10, y), cv.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255))
+
+
+def get_default_calibration_file():
+    dirname = user_data_dir("lpepy")
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
+
+    return os.path.join(dirname, "calibration.yml")

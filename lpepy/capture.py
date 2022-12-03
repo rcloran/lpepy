@@ -234,7 +234,9 @@ def triangulate(world_points, pts1, pts2, mtx, dist):
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="lpe-capture")
+    parser = argparse.ArgumentParser(
+        prog="lpe-capture", formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
     parser.add_argument(
         "--camera",
         default=0,
@@ -244,14 +246,23 @@ def main():
     parser.add_argument(
         "--calibration-file",
         metavar="FILE",
-        required=True,
-        help="Filename for camera calibration data (can be created with lpe-calibrate)",
+        default=util.get_default_calibration_file(),
+        help="Name of file containing camera calibration data (created with lpe-calibrate)",
     )
     parser.add_argument(
         "--leds", default=100, type=int, help="Number of LEDs in the LED string"
     )
-    parser.add_argument("--wled-address", default="255.255.255.255")
-    parser.add_argument("--wled-port", type=int, default=21324)
+    parser.add_argument(
+        "--wled-address",
+        default="255.255.255.255",
+        help="Address of host running WLED which will display LEDs",
+    )
+    parser.add_argument(
+        "--wled-port",
+        type=int,
+        default=21324,
+        help="Port number that WLED is listening on",
+    )
     parser.add_argument(
         "output_file",
         metavar="FILE",
@@ -299,7 +310,7 @@ def main():
                 )
                 world_points.add(new_world_points)
 
-        with open(args.output_file, 'w') as f:
+        with open(args.output_file, "w") as f:
             f.write(world_points.json())
 
     cv.destroyAllWindows()
