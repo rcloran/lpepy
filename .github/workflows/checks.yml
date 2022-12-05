@@ -2,9 +2,9 @@ name: Checks
 on: push
 
 jobs:
-  build:
+  black:
+    name: black
     runs-on: ubuntu-latest
-    name: Checks
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -14,5 +14,41 @@ jobs:
           cache-dependency-path: pyproject.toml
       - run: "pip install -e '.[dev]'"
       - run: black --diff --check lpepy stubs
+  isort:
+    name: isort
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+          cache: 'pip'
+          cache-dependency-path: pyproject.toml
+      - run: "pip install -e '.[dev]'"
+      - run: isort --check-only lpepy stubs
+  flake8:
+    name: flake8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+          cache: 'pip'
+          cache-dependency-path: pyproject.toml
+      - run: "pip install -e '.[dev]'"
+      - run: echo "::add-matcher::.github/workflows/matchers/flake8.json"
       - run: flake8 --show-source --statistics --count lpepy
+  mypy:
+    name: mypy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+          cache: 'pip'
+          cache-dependency-path: pyproject.toml
+      - run: "pip install -e '.[dev]'"
+      - run: echo "::add-matcher::.github/workflows/matchers/mypy.json"
       - run: mypy -p lpepy
