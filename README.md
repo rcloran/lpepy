@@ -74,7 +74,7 @@ options:
                         The size of each block (distance between vertices along an axis), in mm
                         (default: 20)
   --calibration-file FILE
-                        Name of file to which calibration data will be written (default:
+                        File to which calibration data will be written (default:
                         ~/Library/Application Support/lpepy/calibration.yml)
 ```
 
@@ -129,8 +129,8 @@ options:
   -h, --help            show this help message and exit
   --camera CAMERA       The index of the camera to use (according to OpenCV) (default: 0)
   --calibration-file FILE
-                        Name of file containing camera calibration data (created with lpe-
-                        calibrate) (default: ~/Library/Application
+                        File containing camera calibration data (created with lpe-calibrate)
+                        (default: ~/Library/Application
                         Support/lpepy/calibration.yml)
   --leds LEDS           Number of LEDs in the LED string (default: 100)
   --wled-address WLED_ADDRESS

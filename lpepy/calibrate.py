@@ -153,13 +153,15 @@ def main():
         "--columns",
         default=9,
         type=int,
-        help="Number of vertices in the grid in a rightwards direction (along the X axis)",
+        help="Number of vertices in the grid in a rightwards direction "
+        "(along the X axis)",
     )
     parser.add_argument(
         "--rows",
         default=6,
         type=int,
-        help="Number of vertices in the grid in a downward direction (along the Y axis)",
+        help="Number of vertices in the grid in a downward direction "
+        "(along the Y axis)",
     )
     parser.add_argument(
         "--block-size",
@@ -171,7 +173,7 @@ def main():
         "--calibration-file",
         default=util.get_default_calibration_file(),
         metavar="FILE",
-        help="Name of file to which calibration data will be written",
+        help="File to which calibration data will be written",
     )
 
     args = parser.parse_args()

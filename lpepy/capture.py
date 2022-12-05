@@ -247,7 +247,7 @@ def main():
         "--calibration-file",
         metavar="FILE",
         default=util.get_default_calibration_file(),
-        help="Name of file containing camera calibration data (created with lpe-calibrate)",
+        help="File containing camera calibration data (created with lpe-calibrate)",
     )
     parser.add_argument(
         "--leds", default=100, type=int, help="Number of LEDs in the LED string"

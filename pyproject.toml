@@ -10,12 +10,15 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 
+[project.optional-dependencies]
+dev = ["black", "flake8", "isort", "mypy", "types-appdirs"]
+
+[project.scripts]
+lpe-calibrate = "lpepy.calibrate:main"
+lpe-capture = "lpepy.capture:main"
+
 [project.urls]
 repository = "https://github.com/rcloran/lpepy"
 
 [tool.setuptools]
 packages = ["lpepy"]
-
-[project.scripts]
-lpe-calibrate = "lpepy.calibrate:main"
-lpe-capture = "lpepy.capture:main"
